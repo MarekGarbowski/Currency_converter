@@ -1,5 +1,6 @@
 import sys
 from enum import Enum
+from get_data import get_currency_rates
 
 
 class ChoiceEnum(Enum):
@@ -20,7 +21,10 @@ def sell_or_buy():
 
 
 def choose_currency():
-    pass
+    currency = input('Podaj jaką walutę chcesz sprawdzić: ')
+    rate_number = 1
+    print(get_currency_rates(currency, rate_number))
+    input('Press enter...')
 
 
 def sell():
@@ -63,11 +67,19 @@ def print_options():
 def validate_decision(decision):
     allowed_decisions = [e.value for e in ChoiceEnum]
     if decision not in allowed_decisions:
-        raise Exception(f"Number {decision} is  not permitted!")
+        # raise Exception(f"Number {decision} is  not permitted!")
+        print(f"Number {decision} is  not permitted!")
+        input('Press enter...')
+        run()
 
 
-while True:
-    print_options()
-    decision = int(input('Please select option: '))
-    validate_decision(decision)
-    run_calculation(decision)
+def run():
+    while True:
+        print_options()
+        decision = int(input('Please select option: '))
+        validate_decision(decision)
+        run_calculation(decision)
+
+
+if __name__ == '__main__':
+    run()
