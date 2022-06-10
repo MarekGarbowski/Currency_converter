@@ -21,7 +21,7 @@ def sell_or_buy():
 
 
 def choose_currency():
-    currency = input('Podaj jaką walutę chcesz sprawdzić: ')
+    currency = input('Enter the currency you want to check: ')
     rate_number = 1
     print(get_currency_rates(currency, rate_number))
     input('Press enter...')
@@ -79,7 +79,3 @@ def run():
         decision = int(input('Please select option: '))
         validate_decision(decision)
         run_calculation(decision)
-
-
-if __name__ == '__main__':
-    run()

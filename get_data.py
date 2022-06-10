@@ -1,7 +1,6 @@
-import json
 import requests
 # https://api.nbp.pl/api/exchangerates/tables/c/today/?format=json
-# // kursy sprzedaż i zakupu walut w aktualnych cenach, format json
+# kursy sprzedaż i zakupu walut w aktualnych cenach, format json
 
 
 def get_currency_rates(currency, rate_number):
@@ -18,8 +17,12 @@ def get_currency_rates(currency, rate_number):
         print(f'Other exception: {e}')
     else:
         if response.status_code == 200:
-            return json.dumps(response.json(), indent=4, sort_keys=True)
+            raw_data = response.json()
+            currency = raw_data['currency']
+            currency_ask = raw_data['rates'][0]['ask']
+            currency_bid = raw_data['rates'][0]['bid']
+            print(f'The currency: {currency} in sale is for: {currency_ask} '
+                  f'PLN, and in purhcase for: {currency_bid} PLN')
         else:
-            print(f'Podana waluta "{currency}: nie jest dostępna')
+            print(f'The given currency "{currency}: is not available')
             input('Press enter...')
-
