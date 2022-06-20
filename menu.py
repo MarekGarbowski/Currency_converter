@@ -2,8 +2,8 @@ import sys
 from enum import Enum
 
 from functions import chosen_currency_status
-from validators import sell_or_buy_option, validate_int
-from functions import clearconsole
+from validators import validate_int
+from functions import clearconsole, get_currencies_table
 
 
 class ChoiceEnum(Enum):
@@ -16,16 +16,14 @@ class ChoiceEnum(Enum):
 
 
 def list_currencies():
-    # clearconsole()
-    pass
+    get_currencies_table()
 
 
 def sell_or_buy():
-    # clearconsole()
     option = input('Please write "SELL" or "BUY": ')
-    if sell_or_buy_option(option.upper()) == 'SELL':
+    if option.upper() == 'SELL':
         sell()
-    elif sell_or_buy_option(option.upper()) == 'BUY':
+    elif option.upper() == 'BUY':
         buy()
     else:
         print('Wrong typing, try again')
@@ -33,7 +31,6 @@ def sell_or_buy():
 
 
 def choose_currency():
-    # clearconsole()
     currency = input('Enter the currency you want to check: ')
     rate_number = 1
     print(chosen_currency_status(currency, rate_number))
