@@ -1,5 +1,7 @@
 import requests
 import os
+from urllib.request import urlopen
+import json
 
 
 def get_currency_rates(currency, rate_number, table):
@@ -25,11 +27,9 @@ def get_currency_rates(currency, rate_number, table):
 
 def chosen_currency_status(currency, rate_number):
     data = get_currency_rates(currency, rate_number, "c")
-    print(data)
     currency = str(data['currency']).upper()
     currency_ask = data['rates'][0]['ask']
     currency_bid = data['rates'][0]['bid']
-    # print(data)
     data = f'\n' \
            f'The currency: {currency} in: \n' \
            f'\n' \
@@ -42,25 +42,22 @@ def chosen_currency_status(currency, rate_number):
 
 def get_currencies_table():
     try:
-        url = f'http://api.nbp.pl/api/' \
-              f'exchangerates/tables/' \
-              f'a/today/' \
-              f'?format=json'
-        print(url)
-        input('press...')
-        response = requests.get(url)
+        url = "http://api.nbp.pl/api/exchangerates/tables/a/today/?format=json"
+        response = urlopen(url)
+        data_json = json.loads(response.read())
     except requests.HTTPError as http_error:
         print(f'HTTP error: {http_error}')
     except Exception as e:
         print(f'Other exception: {e}')
     else:
-        if response.status_code == 200:
-            raw_data = response.json()
-            print(raw_data)
-            # return raw_data
-        else:
-            print(f'Wrong table')
-            input('Press enter...')
+        y = 0
+        for word in data_json:
+            for x in word.values():
+                y += 1
+                if y == 4:
+                    for a in x:
+                        print(f'Currency: {a["currency"]}, code {a["code"]}, mid price is: {a["mid"]} PLN')
+    input('Press enter...')
 
 
 def ask_value(currency):
