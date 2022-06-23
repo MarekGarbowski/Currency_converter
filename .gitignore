@@ -136,3 +136,4 @@ dmypy.json
 .pdf
 /files
 temp.py
+.gitignore
