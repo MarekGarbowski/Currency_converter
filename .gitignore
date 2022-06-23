@@ -135,5 +135,5 @@ dmypy.json
 *.pdf
 .pdf
 /files
-temp.py
+temp/
 .gitignore
