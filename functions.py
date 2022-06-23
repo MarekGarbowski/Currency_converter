@@ -60,16 +60,18 @@ def get_currencies_table():
     input('Press enter...')
 
 
-def ask_value(currency):
-    data = get_currency_rates(currency, 1)
-    currency_ask = data['rates'][0]['ask']
-    return currency_ask
+def ask_value(currency, amount):
+    data = get_currency_rates(currency, 1, "c")
+    currency_ask = amount * data['rates'][0]['ask']
+    print(currency_ask)
+    input('Press enter...')
 
 
-def bid_value(currency):
-    data = get_currency_rates(currency, 1)
-    currency_ask = data['rates'][0]['bid']
-    return currency_ask
+def bid_value(currency, amount):
+    data = get_currency_rates(currency, 1, "c")
+    currency_bid = amount * data['rates'][0]['bid']
+    print(currency_bid)
+    input('Press enter...')
 
 
 def clearconsole():

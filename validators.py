@@ -9,13 +9,6 @@ def validate(date_text):
         input('Press enter...')
 
 
-# def sell_or_buy_option(data):
-#     if data == 'SELL':
-#         return True
-#     else:
-#         return False
-
-
 def validate_int(data):
     try:
         x = int(data)
