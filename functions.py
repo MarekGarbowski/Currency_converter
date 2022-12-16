@@ -50,13 +50,13 @@ def get_currencies_table():
     except Exception as e:
         print(f'Other exception: {e}')
     else:
-        y = 0
+        counter = 0
         for word in data_json:
-            for x in word.values():
-                y += 1
-                if y == 4:
-                    for a in x:
-                        print(f'Currency: {a["currency"]}, code {a["code"]}, mid price is: {a["mid"]} PLN')
+            for keys in word.values():
+                counter += 1
+                if counter == 4:
+                    for currency in keys:
+                        print(f'Currency: {currency["currency"]}, code {currency["code"]}, mid price is: {currency["mid"]} PLN')
     input('Press enter...')
 
 
