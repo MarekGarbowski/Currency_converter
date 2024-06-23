@@ -110,7 +110,7 @@ def run_calculation(choice):
     :type choice: str
     :return: None
     """
-    action = functions.get(choice)
+    action = functions.get(int(choice))
     if action:
         action()
     else:
